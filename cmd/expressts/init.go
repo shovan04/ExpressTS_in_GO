@@ -9,10 +9,10 @@ import (
 )
 
 var (
-	projectName   string
-	projectDesc   string
-	projectArch   string
-	projectConfig string
+	projectName   string = "expr"
+	projectDesc   string = "An Express Typescript project"
+	projectArch   string = "layered"
+	projectConfig string = "env"
 	confirm       bool = true
 )
 
