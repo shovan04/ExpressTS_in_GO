@@ -1,4 +1,4 @@
-ExpressTs init
+ExpressTs
 
 ✨ Welcome to ExpressTs — Fast. Typed. Opinionated.
 

@@ -1,9 +1,9 @@
-package main
+package root
 
 import (
 	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts"
 )
 
-func main() {
+func CmdInit() {
 	expressts.Init();
 }
