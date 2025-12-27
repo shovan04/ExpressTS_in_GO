@@ -28,8 +28,10 @@ func Init() {
 		os.Exit(1)
 	}
 
-	if projectName == "" {
-		projectName = "expr"
+	// Check the project name
+	// Check if the directory already exists or if the name is '.'
+	if prjName := strings.ToLower(strings.TrimSpace(projectName)); (prjName == "" || prjName == ".") {
+		projectName = config.GetCurrentWorkingDirectoryName()
 	}
 	if projectDesc == "" {
 		projectDesc = "An Express Typescript project"
@@ -46,10 +48,7 @@ func Init() {
 		fmt.Println("🚀 Creating your ExpressTS project...")
 
 		// TODO: Implement project scaffolding based on user choices
-		// Check the project name
-		// Check if the directory already exists
-		if prjName := strings.ToLower(strings.TrimSpace(projectName)); prjName != "" {
-		}
+		
 
 		fmt.Println("✅ Project created successfully!")
 	} else {
