@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/huh"
+	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/achitecture/layered"
 	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/config"
 )
 
@@ -48,6 +49,13 @@ func Init() {
 		fmt.Println("🚀 Creating your ExpressTS project...")
 
 		// TODO: Implement project scaffolding based on user choices
+		switch projectArch {
+		case "layered":
+			//initialize layered architecture
+			layered.InitLayeredArchitecture(projectName)
+		default:
+			fmt.Println("Unsupported architecture.")
+		}
 		
 
 		fmt.Println("✅ Project created successfully!")
