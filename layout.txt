@@ -1,0 +1,39 @@
+ExpressTs init
+
+✨ Welcome to ExpressTs — Fast. Typed. Opinionated.
+
+Let’s set up your backend...
+
+? Project name: (expr-app)
+> my-api
+
+? Project description:
+> Backend service for user management
+
+? Choose your project architecture:
+  ▸ Layered Service Architecture (recommended)
+    Clean Architecture
+    DDD (Domain-Driven Design)
+    Minimal (MVC-style)
+
+? Configuration style:
+  ▸ Environment variables (.env)
+    YAML
+    TOML
+
+📦 Summary
+
+Project: my-api
+Architecture: Layered Service Architecture
+Configuration: .env
+
+? Proceed with project creation? (Y/n)
+
+🚀 Project created successfully!
+
+Next steps:
+  cd my-api
+  pnpm install
+  pnpm dev
+
+Happy hacking... Go fast 🏎️
