@@ -41,8 +41,6 @@ func ProjectSetupForm(projectName *string, projectDesc *string, projectArch *str
 				Title("Configuration style").
 				Options(
 					huh.NewOption("Environment variables (.env)", "env"),
-					huh.NewOption("YAML", "yaml"),
-					huh.NewOption("TOML", "toml"),
 				).
 				Value(projectConfig),
 		),

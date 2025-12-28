@@ -21,9 +21,24 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 	// create package.json tsconfig.json and .env
 	config.WriteFile(types.WriteFileStruct{
 		Path: types.FilePath{
-			DirPath: project.ProjectName,
+			DirPath:  project.ProjectName,
 			FileName: "package.json",
 		},
 		Content: []byte(shared.GetPackageJsonContent(project.ProjectName, project.ProjectDescription)),
+	})
+	config.WriteFile(types.WriteFileStruct{
+		Path: types.FilePath{
+			DirPath:  project.ProjectName,
+			FileName: "tsconfig.json",
+		},
+		Content: []byte(shared.GetTsConfigJsonContent()),
+	})
+
+	config.WriteFile(types.WriteFileStruct{
+		Path: types.FilePath{
+			DirPath:  project.ProjectName,
+			FileName: ".env",
+		},
+		Content: []byte(shared.GetENVFileContent()),
 	})
 }
