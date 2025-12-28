@@ -24,57 +24,11 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 		panic(createLayeredFolders)
 	}
 
-	// create package.json tsconfig.json .env and .gitignore files
-	createPackageJson := config.WriteFile(types.WriteFileStruct{
-		Path: types.FilePath{
-			DirPath:  project.ProjectName,
-			FileName: "package.json",
-		},
-		Content: []byte(shared.GetPackageJsonContent(project.ProjectName, project.ProjectDescription)),
-	})
+	createRootFiles := config.CreateProjectRootFiles(project)
 
-	if createPackageJson != nil {
-		fmt.Println("Error: create package.json file")
-		panic(createPackageJson)
-	}
-
-	createTsConfig := config.WriteFile(types.WriteFileStruct{
-		Path: types.FilePath{
-			DirPath:  project.ProjectName,
-			FileName: "tsconfig.json",
-		},
-		Content: []byte(shared.GetTsConfigJsonContent()),
-	})
-
-	if createTsConfig != nil {
-		fmt.Println("Error: create tsconfig.json file")
-		panic(createTsConfig)
-	}
-
-	createEnvFile := config.WriteFile(types.WriteFileStruct{
-		Path: types.FilePath{
-			DirPath:  project.ProjectName,
-			FileName: ".env",
-		},
-		Content: []byte(shared.GetENVFileContent()),
-	})
-
-	if createEnvFile != nil {
-		fmt.Println("Error: create .env file")
-		panic(createEnvFile)
-	}
-
-	createGitIgnoreFile := config.WriteFile(types.WriteFileStruct{
-		Path: types.FilePath{
-			DirPath:  project.ProjectName,
-			FileName: ".gitignore",
-		},
-		Content: []byte(shared.GetGitIgnoreContent()),
-	})
-
-	if createGitIgnoreFile != nil {
-		fmt.Println("Error: create .gitignore file")
-		panic(createGitIgnoreFile)
+	if createRootFiles != nil {
+		fmt.Println("Error: create root files")
+		panic(createRootFiles)
 	}
 
 	// Create main application file
