@@ -18,14 +18,12 @@ func GetPackageJsonContent(prjName string, prjDesc string) []byte {
     "cookie-parser": "*",
     "cors": "*",
     "dotenv": "*",
-    "express": "*",
-    "multer": "*"
+    "express": "*"
   },
   "devDependencies": {
     "@types/cookie-parser": "*",
     "@types/cors": "*",
     "@types/express": "*",
-    "@types/multer": "*",
     "nodemon": "*",
     "reflect-metadata": "*",
     "typescript": "*"
