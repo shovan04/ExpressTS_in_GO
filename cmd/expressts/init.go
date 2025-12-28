@@ -51,7 +51,7 @@ func Init() {
 	fmt.Println()	
 
 	if confirm {
-		fmt.Println("🚀 Creating your ExpressTS project...")
+		fmt.Println("🚀 Creating project…")
 		fmt.Println()
 		// TODO: Implement project scaffolding based on user choices
 		switch projectArch {
@@ -70,9 +70,9 @@ func Init() {
 		}
 
 		fmt.Println("✅ Project created successfully!")
-		fmt.Println()
+		fmt.Print("\n\n")
 		fmt.Printf("👉 To get started:\n\tcd %s\n\tpnpm up\n\tpnpm dev", projectName)
-		fmt.Println()
+		fmt.Print("\n\n")
 		fmt.Println("Happy hacking 🚀 Go fast 🏎️")
 	} else {
 		fmt.Println("❌ Project creation cancelled.")

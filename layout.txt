@@ -27,13 +27,21 @@ Project: my-api
 Architecture: Layered Service Architecture
 Configuration: .env
 
-? Proceed with project creation? (Y/n)
+? Proceed with project creation?
 
-🚀 Project created successfully!
+🚀 Creating project…
 
-Next steps:
-  cd my-api
-  pnpm install
-  pnpm dev
+✔ Project structure
+✔ Core application files
+✔ Middleware & routes
+✔ Services, DTOs & mappers
+✔ Configuration files
 
-Happy hacking... Go fast 🏎️
+✅ Project created successfully!
+
+👉 To get started:
+	cd testing
+	pnpm up
+	pnpm dev
+
+Happy hacking 🚀 Go fast 🏎️

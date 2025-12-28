@@ -23,9 +23,10 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 	if createLayeredFolders != nil {
 		panic(createLayeredFolders)
 	}
+	fmt.Println("✔ Project structure")
 
 	createRootFiles := config.CreateProjectRootFiles(project)
-
+	
 	if createRootFiles != nil {
 		fmt.Println("Error: create root files")
 		panic(createRootFiles)
@@ -45,6 +46,7 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 		fmt.Println("Error: create main application file")
 		panic(createMainAppFile)
 	}
+	fmt.Println("✔ Core application files")
 
 	// Create Global Error Handler file
 	createGlobalErrorHandlerFile := config.WriteFile(types.WriteFileStruct{
@@ -75,6 +77,7 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 		fmt.Println("Error: create validate DTOs middleware file")
 		panic(createValidateDTOsMiddlewareFile)
 	}
+	fmt.Println("✔ Middleware & routes")
 
 	// Create exeption files
 	createConflictExceptionFile := config.WriteFile(types.WriteFileStruct{
@@ -162,6 +165,7 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 		fmt.Println("Error: create config route file")
 		panic(createConfigRouteFile)
 	}
+	fmt.Println("Config Files Created...")
 
 	// Create routes files - wellcome route and main route file
 	createMainRouteFile := config.WriteFile(types.WriteFileStruct{
@@ -206,6 +210,7 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 		fmt.Println("Error: create wellcome controller file")
 		panic(createWellcomeControllerFile)
 	}
+	fmt.Println("✔ Services, DTOs & mappers")
 
 	// Create Srevice files - wellcome service
 	createWellcomeServiceFile := config.WriteFile(types.WriteFileStruct{
@@ -236,4 +241,5 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 		fmt.Println("Error: create wellcome mapper file")
 		panic(createWellcomeMapperFile)
 	}
+	fmt.Println("✔ Configuration files")
 }
