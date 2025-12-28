@@ -5,9 +5,9 @@ func GetGlobalErrorHandlerContent() []byte {
 import { Request, Response, NextFunction } from "express";
 import ConstraintValidationErrorResponse from "../exceptions/validationErrors.js";
 import HttpResponseCode from "../constants/httpResponseCode.js";
-import { ResponseDTO } from "../DTOClass/response.DTO.js";
+import { ResponseDTO } from "../DTOClasses/response.DTO.js";
 import ConflictException from "../exceptions/conflictExceptions.js";
-import ErrorResponseDTO from "../DTOClass/errorResponse.DTO.js";
+import ErrorResponseDTO from "../DTOClasses/errorResponse.DTO.js";
 
 export default function GlobalErrorHandler(
   err: any,

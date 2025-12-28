@@ -82,9 +82,9 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 	// Create Global Error Handler file
 	createGlobalErrorHandlerFile := config.WriteFile(types.WriteFileStruct{
 		Path: types.FilePath{
-			DirPath: project.ProjectName,
+			DirPath:    project.ProjectName,
 			FolderName: config.StrPointer("/src/middlewares"),
-			FileName: "globalErrorHandler.ts",
+			FileName:   "globalErrorHandler.ts",
 		},
 		Content: []byte(dataLayered.GetGlobalErrorHandlerContent()),
 	})
@@ -97,11 +97,11 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 	// Create Validate DTOs Middleware file
 	createValidateDTOsMiddlewareFile := config.WriteFile(types.WriteFileStruct{
 		Path: types.FilePath{
-			DirPath: project.ProjectName,
+			DirPath:    project.ProjectName,
 			FolderName: config.StrPointer("/src/middlewares"),
-			FileName: "validateDTOs.ts",
+			FileName:   "validateDTOs.ts",
 		},
-		Content: []byte(dataLayered.GetValidateDTOClassContent()),
+		Content: []byte(dataLayered.GetValidateDTOClassesContent()),
 	})
 
 	if createValidateDTOsMiddlewareFile != nil {
@@ -112,9 +112,9 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 	// Create exeption files
 	createConflictExceptionFile := config.WriteFile(types.WriteFileStruct{
 		Path: types.FilePath{
-			DirPath: project.ProjectName,
+			DirPath:    project.ProjectName,
 			FolderName: config.StrPointer("/src/exceptions"),
-			FileName: "conflictExceptions.ts",
+			FileName:   "conflictExceptions.ts",
 		},
 		Content: []byte(dataLayered.GetConflictExceptionContent()),
 	})
@@ -125,9 +125,9 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 	}
 	createValidationExceptionFile := config.WriteFile(types.WriteFileStruct{
 		Path: types.FilePath{
-			DirPath: project.ProjectName,
+			DirPath:    project.ProjectName,
 			FolderName: config.StrPointer("/src/exceptions"),
-			FileName: "validationErrors.ts",
+			FileName:   "validationErrors.ts",
 		},
 		Content: []byte(dataLayered.GetValidationExceptionContent()),
 	})
@@ -140,9 +140,9 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 	// Create DTO Class files
 	createResponseDTOFile := config.WriteFile(types.WriteFileStruct{
 		Path: types.FilePath{
-			DirPath: project.ProjectName,
-			FolderName: config.StrPointer("/src/DTOClass"),
-			FileName: "response.DTO.ts",
+			DirPath:    project.ProjectName,
+			FolderName: config.StrPointer("/src/DTOClasses"),
+			FileName:   "response.DTO.ts",
 		},
 		Content: []byte(dataLayered.GetResponseDTOContent()),
 	})
@@ -154,9 +154,9 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 
 	createErrorResponseDTOFile := config.WriteFile(types.WriteFileStruct{
 		Path: types.FilePath{
-			DirPath: project.ProjectName,
-			FolderName: config.StrPointer("/src/DTOClass"),
-			FileName: "errorResponse.DTO.ts",
+			DirPath:    project.ProjectName,
+			FolderName: config.StrPointer("/src/DTOClasses"),
+			FileName:   "errorResponse.DTO.ts",
 		},
 		Content: []byte(dataLayered.GetErrorResponseDTOContent()),
 	})
@@ -169,9 +169,9 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 	// Create Constant files
 	createHttpResponseCodeFile := config.WriteFile(types.WriteFileStruct{
 		Path: types.FilePath{
-			DirPath: project.ProjectName,
+			DirPath:    project.ProjectName,
 			FolderName: config.StrPointer("/src/constants"),
-			FileName: "httpResponseCode.ts",
+			FileName:   "httpResponseCode.ts",
 		},
 		Content: []byte(shared.GetHttpResponseCodeContent()),
 	})
@@ -184,9 +184,9 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 	// Create Config files - routes
 	createConfigRouteFile := config.WriteFile(types.WriteFileStruct{
 		Path: types.FilePath{
-			DirPath: project.ProjectName,
+			DirPath:    project.ProjectName,
 			FolderName: config.StrPointer("/src/configs/routes"),
-			FileName: "wellcome.ts",
+			FileName:   "wellcome.ts",
 		},
 		Content: []byte(dataLayered.GetRoutesConfigContent()),
 	})
@@ -199,9 +199,9 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 	// Create routes files - wellcome route and main route file
 	createMainRouteFile := config.WriteFile(types.WriteFileStruct{
 		Path: types.FilePath{
-			DirPath: project.ProjectName,
+			DirPath:    project.ProjectName,
 			FolderName: config.StrPointer("/src/routes/"),
-			FileName: "index.ts",
+			FileName:   "index.ts",
 		},
 		Content: []byte(dataLayered.GetMainRouterIndexContent()),
 	})
@@ -213,9 +213,9 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 
 	createHelloRouteFile := config.WriteFile(types.WriteFileStruct{
 		Path: types.FilePath{
-			DirPath: project.ProjectName,
+			DirPath:    project.ProjectName,
 			FolderName: config.StrPointer("/src/routes/hello"),
-			FileName: "wellcome.ts",
+			FileName:   "wellcome.ts",
 		},
 		Content: []byte(dataLayered.GetWellcomeRouterIndexContent()),
 	})
@@ -228,9 +228,9 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 	// Create Controller files - wellcome controller
 	createWellcomeControllerFile := config.WriteFile(types.WriteFileStruct{
 		Path: types.FilePath{
-			DirPath: project.ProjectName,
+			DirPath:    project.ProjectName,
 			FolderName: config.StrPointer("/src/controllers/hello"),
-			FileName: "wellcome.controller.ts",
+			FileName:   "wellcome.controller.ts",
 		},
 		Content: []byte(dataLayered.GetWellcomeControllerContent()),
 	})
@@ -243,13 +243,13 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 	// Create Srevice files - wellcome service
 	createWellcomeServiceFile := config.WriteFile(types.WriteFileStruct{
 		Path: types.FilePath{
-			DirPath: project.ProjectName,
+			DirPath:    project.ProjectName,
 			FolderName: config.StrPointer("/src/services/hello"),
-			FileName: "wellcome.service.ts",
+			FileName:   "wellcome.service.ts",
 		},
 		Content: []byte(dataLayered.GetHelloServiceContent()),
 	})
-	
+
 	if createWellcomeServiceFile != nil {
 		fmt.Println("Error: create wellcome service file")
 		panic(createWellcomeServiceFile)

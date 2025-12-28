@@ -1,17 +1,17 @@
 package layered
 
-func GetValidateDTOClassContent() []byte {
+func GetValidateDTOClassesContent() []byte {
 	return []byte(`import { plainToInstance } from "class-transformer";
 import { validate } from "class-validator";
 import { NextFunction, Request, Response } from "express";
 
 export const validateDto = (
-  DtoClass: any,
+  DTOClasses: any,
   source: "body" | "query" | "params" = "body"
 ) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const dtoObj = plainToInstance(DtoClass, req[source]);
+      const dtoObj = plainToInstance(DTOClasses, req[source]);
       const errors = await validate(dtoObj);
 
       if (errors.length > 0) {
