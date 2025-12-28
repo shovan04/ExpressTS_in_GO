@@ -22,6 +22,7 @@ var (
 func Init() {
 	fmt.Println("✨ Welcome to ExpressTs — Fast. Typed. Opinionated.")
 	fmt.Println("Let's set up your backend...")
+	fmt.Println()
 
 	projectSetup := config.ProjectSetupForm(&projectName, &projectDesc, &projectArch, &projectConfig)
 
@@ -40,15 +41,18 @@ func Init() {
 	}
 
 	config.ProjectSummary(projectName, projectDesc, projectArch, projectConfig)
-
+	fmt.Println()
+	// Confirm to proceed
 	huh.NewConfirm().
 		Title("Proceed with project creation?").
 		Value(&confirm).
 		Run()
 
+	fmt.Println()	
+
 	if confirm {
 		fmt.Println("🚀 Creating your ExpressTS project...")
-
+		fmt.Println()
 		// TODO: Implement project scaffolding based on user choices
 		switch projectArch {
 		case "layered":
@@ -66,6 +70,10 @@ func Init() {
 		}
 
 		fmt.Println("✅ Project created successfully!")
+		fmt.Println()
+		fmt.Printf("👉 To get started:\n\tcd %s\n\tpnpm up\n\tpnpm dev", projectName)
+		fmt.Println()
+		fmt.Println("Happy hacking 🚀 Go fast 🏎️")
 	} else {
 		fmt.Println("❌ Project creation cancelled.")
 	}
