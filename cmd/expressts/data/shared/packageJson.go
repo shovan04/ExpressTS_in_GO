@@ -1,0 +1,34 @@
+package shared
+
+func GetPackageJsonContent(prjName string, prjDesc string) []byte {
+	return []byte(`{
+  "name": "` + prjName + `",
+  "version": "1.0.0",
+  "description": "` + prjDesc + `",
+  "main": "dist/bin/app.js",
+  "type": "module",
+  "scripts": {
+    "dev:build": "tsc --build -w",
+    "dev:start": "nodemon dist/bin/app.js"
+  },
+  "packageManager": "pnpm@10.19.0",
+  "dependencies": {
+    "class-transformer": "*",
+    "class-validator": "*",
+    "cookie-parser": "*",
+    "cors": "*",
+    "dotenv": "*",
+    "express": "*",
+    "multer": "*"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "*",
+    "@types/cors": "*",
+    "@types/express": "*",
+    "@types/multer": "*",
+    "nodemon": "*",
+    "reflect-metadata": "*",
+    "typescript": "*"
+  }
+}`)
+}

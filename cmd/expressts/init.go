@@ -8,6 +8,7 @@ import (
 	"github.com/charmbracelet/huh"
 	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/achitecture/layered"
 	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/config"
+	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/types"
 )
 
 var (
@@ -31,7 +32,7 @@ func Init() {
 
 	// Check the project name
 	// Check if the directory already exists or if the name is '.'
-	if prjName := strings.ToLower(strings.TrimSpace(projectName)); (prjName == "" || prjName == ".") {
+	if prjName := strings.ToLower(strings.TrimSpace(projectName)); prjName == "" || prjName == "." {
 		projectName = config.GetCurrentWorkingDirectoryName()
 	}
 	if projectDesc == "" {
@@ -52,11 +53,17 @@ func Init() {
 		switch projectArch {
 		case "layered":
 			//initialize layered architecture
-			layered.InitLayeredArchitecture(projectName)
+			layered.InitLayeredArchitecture(
+				types.ProjectInitStruct{
+					ProjectName:        projectName,
+					ProjectDescription: projectDesc,
+					Options: types.ProjectInitOptions{
+						ConfigType: projectConfig,
+					},
+				})
 		default:
 			fmt.Println("Unsupported architecture.")
 		}
-		
 
 		fmt.Println("✅ Project created successfully!")
 	} else {
