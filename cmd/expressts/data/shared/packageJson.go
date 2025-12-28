@@ -9,7 +9,8 @@ func GetPackageJsonContent(prjName string, prjDesc string) []byte {
   "type": "module",
   "scripts": {
     "dev:build": "tsc --build -w",
-    "dev:start": "nodemon dist/bin/app.js"
+    "dev:start": "nodemon dist/bin/app.js",
+    "dev": "pnpm dev:build & pnpm dev:start"
   },
   "packageManager": "pnpm@10.19.0",
   "dependencies": {

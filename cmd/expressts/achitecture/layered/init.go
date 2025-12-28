@@ -24,7 +24,7 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 		panic(createLayeredFolders)
 	}
 
-	// create package.json tsconfig.json and .env
+	// create package.json tsconfig.json .env and .gitignore files
 	createPackageJson := config.WriteFile(types.WriteFileStruct{
 		Path: types.FilePath{
 			DirPath:  project.ProjectName,
@@ -62,6 +62,19 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 	if createEnvFile != nil {
 		fmt.Println("Error: create .env file")
 		panic(createEnvFile)
+	}
+
+	createGitIgnoreFile := config.WriteFile(types.WriteFileStruct{
+		Path: types.FilePath{
+			DirPath:  project.ProjectName,
+			FileName: ".gitignore",
+		},
+		Content: []byte(shared.GetGitIgnoreContent()),
+	})
+
+	if createGitIgnoreFile != nil {
+		fmt.Println("Error: create .gitignore file")
+		panic(createGitIgnoreFile)
 	}
 
 	// Create main application file
