@@ -68,7 +68,7 @@ func Init() {
 		default:
 			fmt.Println("Unsupported architecture.")
 		}
-
+		fmt.Println()
 		fmt.Println("✅ Project created successfully!")
 		fmt.Print("\n\n")
 		fmt.Printf("👉 To get started:\n\tcd %s\n\tpnpm up\n\tpnpm dev", projectName)
@@ -77,5 +77,5 @@ func Init() {
 	} else {
 		fmt.Println("❌ Project creation cancelled.")
 	}
-
+	fmt.Println()
 }

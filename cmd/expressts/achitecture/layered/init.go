@@ -165,7 +165,6 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 		fmt.Println("Error: create config route file")
 		panic(createConfigRouteFile)
 	}
-	fmt.Println("Config Files Created...")
 
 	// Create routes files - wellcome route and main route file
 	createMainRouteFile := config.WriteFile(types.WriteFileStruct{
