@@ -254,4 +254,19 @@ func InitLayeredArchitecture(project types.ProjectInitStruct) {
 		fmt.Println("Error: create wellcome service file")
 		panic(createWellcomeServiceFile)
 	}
+
+	// Create Mapper files - wellcome mapper
+	createWellcomeMapperFile := config.WriteFile(types.WriteFileStruct{
+		Path: types.FilePath{
+			DirPath: project.ProjectName,
+			FolderName: config.StrPointer("/src/mappers/hello"),
+			FileName: "wellcome.mapper.ts",
+		},
+		Content: []byte(dataLayered.GetWellcomeMapperContent()),
+	})
+
+	if createWellcomeMapperFile != nil {
+		fmt.Println("Error: create wellcome mapper file")
+		panic(createWellcomeMapperFile)
+	}
 }

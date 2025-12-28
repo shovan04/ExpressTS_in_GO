@@ -2,7 +2,7 @@ package layered
 
 func GetMainRouterIndexContent() []byte {
 	return []byte(`import { Router, Request, Response } from "express";
-import { WellcomeRoutes } from "../config/routes/wellcome.js";
+import { WellcomeRoutes } from "../configs/routes/wellcome.js";
 import wellcomeRoutes from "./hello/wellcome.js";
 
 const mainRouter = Router();

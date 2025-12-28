@@ -2,7 +2,7 @@ package layered
 
 func GetWellcomeControllerContent() []byte {
 	return []byte(`import { Request, Response } from "express";
-import { mapSayWellcomeResponse } from "../../mappers/hello/wellcome.js";
+import { mapSayWellcomeResponse } from "../../mappers/hello/wellcome.mapper.js";
 import { HelloService } from "../../services/hello/wellcome.service.js";
 
 export const sayWellcome = (req: Request, res: Response) => {

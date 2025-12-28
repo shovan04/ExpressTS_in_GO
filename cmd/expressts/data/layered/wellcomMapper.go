@@ -1,7 +1,7 @@
 package layered
 
 func GetWellcomeMapperContent() []byte {
-	return []byte(`import { ResponseDTO } from "../../DTOs/response.DTO.js";
+	return []byte(`import { ResponseDTO } from "../../DTOClasses/response.DTO.js";
 
 export const mapSayWellcomeResponse = (data: string) => {
     const response = new ResponseDTO<string>();
@@ -9,5 +9,4 @@ export const mapSayWellcomeResponse = (data: string) => {
     response.setMessage("Success");
     response.setData(data);
     return response;
-}`)
-}
+}`)}
