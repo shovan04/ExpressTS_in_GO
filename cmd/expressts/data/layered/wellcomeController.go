@@ -9,5 +9,4 @@ export const sayWellcome = (req: Request, res: Response) => {
   const data: string = HelloService.sayWellcome();
     const response = mapSayWellcomeResponse(data);
   res.status(200).json(response);
-};`)
-}
+};`)}

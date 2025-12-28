@@ -3,7 +3,7 @@ package layered
 func GetGlobalErrorHandlerContent() []byte {
 	return []byte(`import { ValidationError } from "class-validator";
 import { Request, Response, NextFunction } from "express";
-import ConstraintValidationErrorResponse from "../exceptions/valodationErrors.js";
+import ConstraintValidationErrorResponse from "../exceptions/validationErrors.js";
 import HttpResponseCode from "../constants/httpResponseCode.js";
 import { ResponseDTO } from "../DTOClass/response.DTO.js";
 import ConflictException from "../exceptions/conflictExceptions.js";
