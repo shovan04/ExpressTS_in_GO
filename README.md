@@ -30,7 +30,7 @@ Choose your project architecture during setup:
 - **Minimal MVC-style**
 - **Clean Architecture** *(under development)*
 
-Each option generates a well-structured and scalable folder layout.
+Each option generates a well-structured and scalable folder layout. The layered architecture scaffolder is implemented and creates a `src/` prefixed set of folders for the new project.
 
 ---
 
@@ -57,15 +57,17 @@ cd ExpressTS-in-GO
 
 ### Run the CLI
 
+Run directly from the repository root:
+
 ```bash
-go run ./cmd/expressts
+go run main.go
 ```
 
-Or build once and run:
+Or build and run the compiled binary:
 
 ```bash
-go build -o expressts ./cmd/expressts
-./expressts
+go build -o ExpressTS
+./ExpressTS
 ```
 
 ---
@@ -88,21 +90,24 @@ expressts init --yes
 
 ## 📁 Example Generated Structure (Layered)
 
+The scaffolder creates a `src/` directory inside the new project and places architecture folders there:
+
 ```text
 my-api/
-├── bin/
-├── config/
-├── constants/
-├── controllers/
-├── services/
-├── repositories/
-├── DTO/
-├── exceptions/
-├── middlewares/
-├── routes/
-├── utils/
-├── interfaces/
-└── mappers/
+└── src/
+	├── bin/
+	├── configs/
+	├── constants/
+	├── controllers/
+	├── services/
+	├── repositories/
+	├── DTOClasses/
+	├── exceptions/
+	├── middlewares/
+	├── routes/
+	├── utilities/
+	├── interfaces/
+	└── mappers/
 ```
 
 ---
