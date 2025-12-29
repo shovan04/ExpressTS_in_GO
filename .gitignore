@@ -1,3 +1,9 @@
 track.txt
 
 **.out
+
+.DS_Store
+.vscode/
+.idea/
+*.log
+.env
