@@ -46,7 +46,7 @@ export default function GlobalErrorHandler(
   if (
     Array.isArray(err) &&
     err.length > 0 &&
-    err.every(e => e instanceof ValidationError)
+    err.every((e) => e instanceof ValidationError)
   ) {
     const validationErrors = extractValidationErrors(err);
 
@@ -103,7 +103,8 @@ export default function GlobalErrorHandler(
 
   /* ---------- GENERIC HTTP ERRORS ---------- */
   if (typeof err === "object" && err !== null && "statusCode" in err) {
-    const statusCode = (err as any).statusCode || HttpResponseCode.INTERNAL_SERVER_ERROR;
+    const statusCode =
+      (err as any).statusCode || HttpResponseCode.INTERNAL_SERVER_ERROR;
 
     const errorDto = new ResponseDTO<ErrorResponseDTO>();
     errorDto.setStatus(false);
@@ -132,10 +133,7 @@ export default function GlobalErrorHandler(
       "Internal server error"
     )
   );
-
-  return res
-    .status(HttpResponseCode.INTERNAL_SERVER_ERROR)
-    .json(errorDto);
+  return res.status(HttpResponseCode.INTERNAL_SERVER_ERROR).json(errorDto);
 }
 `)
 }
