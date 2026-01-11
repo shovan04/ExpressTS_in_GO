@@ -1,10 +1,13 @@
 package ddd
 
 func GetCreateUserDTOContent() []byte {
-	return []byte(`
-export interface CreateUserDTO {
-  name: string;
-  email: string;
-}
-`)
+	return []byte(`import { IsNotEmpty, IsEmail } from "class-validator";
+
+export class CreateUserDTO {
+    @IsNotEmpty({ message: "Name should not be empty" })
+    name!: string;
+    
+    @IsEmail({}, { message: "Invalid email format" })
+    email!: string;
+}`)
 }
