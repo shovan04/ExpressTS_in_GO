@@ -8,6 +8,7 @@ import (
 	"github.com/charmbracelet/huh"
 	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/achitecture/ddd"
 	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/achitecture/layered"
+	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/achitecture/mvc"
 	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/config"
 	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/types"
 )
@@ -69,6 +70,16 @@ func Init() {
 		case "ddd":
 			//initialize ddd architecture
 			ddd.InitDDDArchitecture(
+				types.ProjectInitStruct{
+					ProjectName:        projectName,
+					ProjectDescription: projectDesc,
+					Options: types.ProjectInitOptions{
+						ConfigType: projectConfig,
+					},
+				})
+		case "mvc":
+			//initialize mvc architecture
+			mvc.InitMVCArchitecture(
 				types.ProjectInitStruct{
 					ProjectName:        projectName,
 					ProjectDescription: projectDesc,

@@ -8,4 +8,5 @@ track.txt
 *.log
 .env
 
-*_test.*
+*_test.*test -v ./cmd/expressts/achitecture/mvc_test.go
+*_test.go
