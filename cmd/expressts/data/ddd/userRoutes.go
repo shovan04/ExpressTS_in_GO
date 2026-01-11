@@ -6,7 +6,7 @@ import { Router } from "express";
 import { UserController } from "../controllers/UserController.js";
 import { CreateUserUseCase } from "../../../application/use-cases/CreateUserUseCase.js";
 import { InMemoryUserRepository } from "../../../infrastructure/persistence/InMemoryUserRepository.js";
-import { validateDto } from "../../middlewares/ValidateDto.js";
+import { validateDto } from "../middlewares/ValidateDto.js";
 import { CreateUserDTO } from "../../../application/dtos/CreateUserDTO.js";
 
 const router = Router();
