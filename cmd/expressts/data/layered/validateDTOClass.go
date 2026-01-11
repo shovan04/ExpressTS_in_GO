@@ -5,23 +5,41 @@ func GetValidateDTOClassesContent() []byte {
 import { validate } from "class-validator";
 import { NextFunction, Request, Response } from "express";
 
+type ReqSource = "body" | "query" | "params";
+
 export const validateDto = (
-  DTOClasses: any,
-  source: "body" | "query" | "params" = "body"
+  DTOClass: any,
+  source: ReqSource = "body"
 ) => {
-  return async (req: Request, res: Response, next: NextFunction) => {
+  return async (req: Request, _res: Response, next: NextFunction) => {
     try {
-      const dtoObj = plainToInstance(DTOClasses, req[source]);
-      const errors = await validate(dtoObj);
+      const rawData = req[source];
+
+      const dtoObj = plainToInstance(DTOClass, rawData, {
+        enableImplicitConversion: true,
+        exposeDefaultValues: true,
+      });
+
+      const errors = await validate(dtoObj, {
+        whitelist: true,              
+        forbidNonWhitelisted: true,   
+        forbidUnknownValues: true,
+        validationError: {
+          target: false,
+          value: false,
+        },
+      });
 
       if (errors.length > 0) {
         return next(errors);
       }
-      // assign the validated DTO back, so other middlewares can trust it
-      Object.assign(req[source], dtoObj);
+
+      // overwrite the same source so next handlers use validated + transformed data
+      (req as any)[source] = dtoObj;
+
       next();
-    } catch (error) {
-      next(error);
+    } catch (err) {
+      next(err);
     }
   };
 };
