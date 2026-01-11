@@ -9,3 +9,5 @@ track.txt
 .env
 
 **_test.go
+
+init_test.go
