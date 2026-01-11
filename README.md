@@ -146,3 +146,13 @@ MIT License
 - [x] add DTO validation middleware
 - [x] add validation exception response
 - [x] correct validateDto import path in userRoutes
+
+### MVC Architecture
+
+- [x] Plan MVC folder structure and templates
+- [x] Create templates (Model, Controller, Routes, Middleware, MainApp)
+- [x] Implement initialization logic in init.go and folders.go
+- [x] Register MVC option in init.go
+- [x] Verify with test_init_mvc_architecture
+- [x] Add DTOs in utilities/dtos
+- [x] Add Generic Response/Error DTOs and Exceptions in utilities
