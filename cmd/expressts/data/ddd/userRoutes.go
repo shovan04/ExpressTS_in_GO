@@ -13,7 +13,7 @@ const userRepository = new InMemoryUserRepository();
 const createUserUseCase = new CreateUserUseCase(userRepository);
 const userController = new UserController(createUserUseCase);
 
-router.post("/users", (req, res) => userController.create(req, res));
+router.post("/", (req, res) => userController.create(req, res));
 
 export { router as userRouter };
 `)
