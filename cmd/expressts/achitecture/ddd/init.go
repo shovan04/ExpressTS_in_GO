@@ -86,6 +86,31 @@ func InitDDDArchitecture(project types.ProjectInitStruct) {
 		panic(createRepoInterfaceFile)
 	}
 
+	// Exceptions
+	createConflictException := config.WriteFile(types.WriteFileStruct{
+		Path: types.FilePath{
+			DirPath:    project.ProjectName,
+			FolderName: config.StrPointer("/src/domain/exceptions"),
+			FileName:   "ConflictException.ts",
+		},
+		Content: ddd.GetConflictExceptionContent(),
+	})
+	if createConflictException != nil {
+		panic(createConflictException)
+	}
+
+	createValidationException := config.WriteFile(types.WriteFileStruct{
+		Path: types.FilePath{
+			DirPath:    project.ProjectName,
+			FolderName: config.StrPointer("/src/domain/exceptions"),
+			FileName:   "ValidationException.ts",
+		},
+		Content: ddd.GetValidationExceptionContent(),
+	})
+	if createValidationException != nil {
+		panic(createValidationException)
+	}
+
 	// Create Application Layer Files
 	// Use Case
 	createUseCaseFile := config.WriteFile(types.WriteFileStruct{
@@ -111,6 +136,31 @@ func InitDDDArchitecture(project types.ProjectInitStruct) {
 	})
 	if createDTOFile != nil {
 		panic(createDTOFile)
+	}
+
+	// DTOs
+	createResponseDTO := config.WriteFile(types.WriteFileStruct{
+		Path: types.FilePath{
+			DirPath:    project.ProjectName,
+			FolderName: config.StrPointer("/src/application/dtos"),
+			FileName:   "ResponseDTO.ts",
+		},
+		Content: ddd.GetResponseDTOContent(),
+	})
+	if createResponseDTO != nil {
+		panic(createResponseDTO)
+	}
+
+	createErrorResponseDTO := config.WriteFile(types.WriteFileStruct{
+		Path: types.FilePath{
+			DirPath:    project.ProjectName,
+			FolderName: config.StrPointer("/src/application/dtos"),
+			FileName:   "ErrorResponseDTO.ts",
+		},
+		Content: ddd.GetErrorResponseDTOContent(),
+	})
+	if createErrorResponseDTO != nil {
+		panic(createErrorResponseDTO)
 	}
 
 	// Create Infrastructure Layer Files
@@ -164,6 +214,31 @@ func InitDDDArchitecture(project types.ProjectInitStruct) {
 	})
 	if createMainRouterFile != nil {
 		panic(createMainRouterFile)
+	}
+
+	// Middlewares
+	createGlobalErrorHandler := config.WriteFile(types.WriteFileStruct{
+		Path: types.FilePath{
+			DirPath:    project.ProjectName,
+			FolderName: config.StrPointer("/src/interfaces/http/middlewares"),
+			FileName:   "GlobalErrorHandler.ts",
+		},
+		Content: ddd.GetGlobalErrorHandlerContent(),
+	})
+	if createGlobalErrorHandler != nil {
+		panic(createGlobalErrorHandler)
+	}
+
+	createValidateDto := config.WriteFile(types.WriteFileStruct{
+		Path: types.FilePath{
+			DirPath:    project.ProjectName,
+			FolderName: config.StrPointer("/src/interfaces/http/middlewares"),
+			FileName:   "ValidateDto.ts",
+		},
+		Content: ddd.GetValidateDTOContent(),
+	})
+	if createValidateDto != nil {
+		panic(createValidateDto)
 	}
 
 	fmt.Println("✔ Domain, Application, Infrastructure & Interface layers")
