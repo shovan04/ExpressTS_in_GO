@@ -154,5 +154,17 @@ func InitDDDArchitecture(project types.ProjectInitStruct) {
 		panic(createRoutesFile)
 	}
 
+	createMainRouterFile := config.WriteFile(types.WriteFileStruct{
+		Path: types.FilePath{
+			DirPath:    project.ProjectName,
+			FolderName: config.StrPointer("/src/interfaces/http/routes"),
+			FileName:   "index.ts",
+		},
+		Content: ddd.GetMainRouterIndexContent(),
+	})
+	if createMainRouterFile != nil {
+		panic(createMainRouterFile)
+	}
+
 	fmt.Println("✔ Domain, Application, Infrastructure & Interface layers")
 }
