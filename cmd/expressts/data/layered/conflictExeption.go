@@ -1,13 +1,23 @@
 package layered
 
 func GetConflictExceptionContent() []byte {
-	return  []byte(`class ConflictException extends Error {
-  statusCode: number;
+	return  []byte(`import HttpResponseCode from "../constants/httpResponseCode.js";
 
-  constructor(message: string) {
+class ConflictException extends Error {
+  statusCode: number;
+  code: string;
+  override cause?: unknown;
+
+  constructor(message: string, cause?: unknown) {
     super(message);
-    this.statusCode = 404;
-    Object.setPrototypeOf(this, ConflictException.prototype);
+
+    this.name = "ConflictException";
+    this.code = "CONFLICT_ERROR";
+    this.statusCode = HttpResponseCode.CONFLICT;
+    this.cause = cause;
+
+    Object.setPrototypeOf(this, new.target.prototype);
+    Error.captureStackTrace?.(this, this.constructor);
   }
 }
 
