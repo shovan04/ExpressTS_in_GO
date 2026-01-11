@@ -28,7 +28,7 @@ Choose your project architecture during setup:
 - **Layered Service Architecture** (recommended)
 - **Domain-Driven Design (DDD)**
 - **Minimal MVC-style**
-- **Clean Architecture** *(under development)*
+- **Clean Architecture** _(under development)_
 
 Each option generates a well-structured and scalable folder layout. The layered architecture scaffolder is implemented and creates a `src/` prefixed set of folders for the new project.
 
@@ -115,3 +115,34 @@ my-api/
 ## 📜 License
 
 MIT License
+
+---
+
+## ✅ Project Progress
+
+- [x] get project details from user
+- [x] check and validate the inserted data
+
+### Layered Folder Structure
+
+- [x] init
+- [x] create project folder
+- [x] create package.json tsconfig.json and .env
+- [x] created all the required data files
+- [x] implemented all the data files
+- [x] Update the DTO Validator Middleware
+- [x] Update the ValidateDto middleware
+
+### DDD Architecture
+
+- [x] add exceptions folder to domain layer
+- [x] add exception, dto, and middleware files to scaffolding
+- [x] remove try-catch block from user controller
+- [x] add validation middleware and error handling to user routes
+- [x] add conflict exception
+- [x] add error response DTO
+- [x] add global error handler middleware
+- [x] add generic response DTO
+- [x] add DTO validation middleware
+- [x] add validation exception response
+- [x] correct validateDto import path in userRoutes
