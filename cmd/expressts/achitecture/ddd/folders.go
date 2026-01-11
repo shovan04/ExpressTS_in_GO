@@ -9,6 +9,7 @@ func GetDDDFolders() []types.LayeredFolderStruct {
 		{FolderName: "domain/entities"},
 		{FolderName: "domain/repositories"},
 		{FolderName: "domain/value-objects"},
+		{FolderName: "domain/exceptions"},
 		{FolderName: "constants"},
 		{FolderName: "application"},
 		{FolderName: "application/use-cases"},
