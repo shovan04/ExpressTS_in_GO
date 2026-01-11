@@ -4,10 +4,12 @@ import "github.com/shovan04/ExpressTS-in-GO/cmd/expressts/types"
 
 func GetDDDFolders() []types.LayeredFolderStruct {
 	return []types.LayeredFolderStruct{
+		{FolderName: "bin"},
 		{FolderName: "domain"},
 		{FolderName: "domain/entities"},
 		{FolderName: "domain/repositories"},
 		{FolderName: "domain/value-objects"},
+		{FolderName: "constants"},
 		{FolderName: "application"},
 		{FolderName: "application/use-cases"},
 		{FolderName: "application/dtos"},
