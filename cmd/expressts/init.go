@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/huh"
+	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/achitecture/ddd"
 	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/achitecture/layered"
 	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/config"
 	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/types"
@@ -48,7 +49,7 @@ func Init() {
 		Value(&confirm).
 		Run()
 
-	fmt.Println()	
+	fmt.Println()
 
 	if confirm {
 		fmt.Println("🚀 Creating project…")
@@ -58,6 +59,16 @@ func Init() {
 		case "layered":
 			//initialize layered architecture
 			layered.InitLayeredArchitecture(
+				types.ProjectInitStruct{
+					ProjectName:        projectName,
+					ProjectDescription: projectDesc,
+					Options: types.ProjectInitOptions{
+						ConfigType: projectConfig,
+					},
+				})
+		case "ddd":
+			//initialize ddd architecture
+			ddd.InitDDDArchitecture(
 				types.ProjectInitStruct{
 					ProjectName:        projectName,
 					ProjectDescription: projectDesc,
