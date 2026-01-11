@@ -4,6 +4,9 @@ func GetGlobalErrorHandlerContent() []byte {
 	return []byte(`import { ValidationError } from "class-validator";
 import { Request, Response, NextFunction } from "express";
 import HttpResponseCode from "../utilities/httpResponseCode.js";
+import { ResponseDTO } from "../utilities/dtos/ResponseDTO.js";
+import ErrorResponseDTO from "../utilities/dtos/ErrorResponseDTO.js";
+import ConflictException from "../utilities/exceptions/ConflictException.js";
 
 /* -------- helper to extract nested validation errors -------- */
 function extractValidationErrors(
@@ -46,44 +49,67 @@ export default function GlobalErrorHandler(
   ) {
     const validationErrors = extractValidationErrors(err);
 
-    return res.status(HttpResponseCode.BAD_REQUEST).json({
-        status: false,
+    const errorDto = new ResponseDTO<any>();
+    errorDto.setStatus(false);
+    errorDto.setMessage("Validation failed");
+    errorDto.setData({
+        path,
+        status: HttpResponseCode.BAD_REQUEST,
         message: "Validation failed",
-        data: {
-            path,
-            status: HttpResponseCode.BAD_REQUEST,
-            message: "Validation failed",
-            validationErrors
-        }
+        validationErrors
     });
+
+    return res.status(HttpResponseCode.BAD_REQUEST).json(errorDto);
+  }
+
+  /* ---------- CUSTOM CONFLICT ERROR ---------- */
+  if (err instanceof ConflictException) {
+    const errorDto = new ResponseDTO<ErrorResponseDTO>();
+    errorDto.setStatus(false);
+    errorDto.setMessage("Conflict occurred");
+    errorDto.setData(
+      new ErrorResponseDTO(
+        path,
+        HttpResponseCode.CONFLICT,
+        err.message || "Conflict occurred"
+      )
+    );
+
+    return res.status(HttpResponseCode.CONFLICT).json(errorDto);
   }
 
   /* ---------- GENERIC HTTP ERRORS ---------- */
   if (typeof err === "object" && err !== null && "statusCode" in err) {
     const statusCode = (err as any).statusCode || HttpResponseCode.INTERNAL_SERVER_ERROR;
-    return res.status(statusCode).json({
-        status: false,
-        message: "Request failed",
-        data: {
-             path,
-             status: statusCode,
-             message: (err as any).message || "Request failed"
-        }
-    });
+    
+    const errorDto = new ResponseDTO<ErrorResponseDTO>();
+    errorDto.setStatus(false);
+    errorDto.setMessage("Request failed");
+    errorDto.setData(
+      new ErrorResponseDTO(
+        path,
+        statusCode,
+        (err as any).message || "Request failed"
+      )
+    );
+
+    return res.status(statusCode).json(errorDto);
   }
 
   /* ---------- FALLBACK ---------- */
   console.error("Unhandled Error:", err);
 
-  return res.status(HttpResponseCode.INTERNAL_SERVER_ERROR).json({
-      status: false,
-      message: "An error occurred",
-      data: {
-          path,
-          status: HttpResponseCode.INTERNAL_SERVER_ERROR,
-          message: "Internal server error"
-      }
-  });
+  const errorDto = new ResponseDTO<ErrorResponseDTO>();
+  errorDto.setStatus(false);
+  errorDto.setMessage("An error occurred");
+  errorDto.setData(
+    new ErrorResponseDTO(
+      path,
+      HttpResponseCode.INTERNAL_SERVER_ERROR,
+      "Internal server error"
+    )
+  );
+  return res.status(HttpResponseCode.INTERNAL_SERVER_ERROR).json(errorDto);
 }
 `)
 }

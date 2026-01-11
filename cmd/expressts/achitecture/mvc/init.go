@@ -121,7 +121,7 @@ func InitMVCArchitecture(project types.ProjectInitStruct) {
 		panic(createValidateDto)
 	}
 
-	// Create Utilities (Configs/Constants)
+	// Create Utilities (Configs/Constants/DTOs)
 	createConstants := config.WriteFile(types.WriteFileStruct{
 		Path: types.FilePath{
 			DirPath:    project.ProjectName,
@@ -132,6 +132,54 @@ func InitMVCArchitecture(project types.ProjectInitStruct) {
 	})
 	if createConstants != nil {
 		panic(createConstants)
+	}
+
+	createDTOFile := config.WriteFile(types.WriteFileStruct{
+		Path: types.FilePath{
+			DirPath:    project.ProjectName,
+			FolderName: config.StrPointer("/src/utilities/dtos"),
+			FileName:   "CreateUserDTO.ts",
+		},
+		Content: mvc.GetCreateUserDTOContent(),
+	})
+	if createDTOFile != nil {
+		panic(createDTOFile)
+	}
+
+	createResponseDTO := config.WriteFile(types.WriteFileStruct{
+		Path: types.FilePath{
+			DirPath:    project.ProjectName,
+			FolderName: config.StrPointer("/src/utilities/dtos"),
+			FileName:   "ResponseDTO.ts",
+		},
+		Content: mvc.GetResponseDTOContent(),
+	})
+	if createResponseDTO != nil {
+		panic(createResponseDTO)
+	}
+
+	createErrorResponseDTO := config.WriteFile(types.WriteFileStruct{
+		Path: types.FilePath{
+			DirPath:    project.ProjectName,
+			FolderName: config.StrPointer("/src/utilities/dtos"),
+			FileName:   "ErrorResponseDTO.ts",
+		},
+		Content: mvc.GetErrorResponseDTOContent(),
+	})
+	if createErrorResponseDTO != nil {
+		panic(createErrorResponseDTO)
+	}
+
+	createConflictException := config.WriteFile(types.WriteFileStruct{
+		Path: types.FilePath{
+			DirPath:    project.ProjectName,
+			FolderName: config.StrPointer("/src/utilities/exceptions"),
+			FileName:   "ConflictException.ts",
+		},
+		Content: mvc.GetConflictExceptionContent(),
+	})
+	if createConflictException != nil {
+		panic(createConflictException)
 	}
 
 	fmt.Println("✔ Model, Controller, Routes & Middleware layers")

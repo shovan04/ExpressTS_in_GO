@@ -10,5 +10,7 @@ func GetMVCFolders() []types.LayeredFolderStruct {
 		{FolderName: "routes"},
 		{FolderName: "middleware"},
 		{FolderName: "utilities"},
+		{FolderName: "utilities/dtos"},
+		{FolderName: "utilities/exceptions"},
 	}
 }
