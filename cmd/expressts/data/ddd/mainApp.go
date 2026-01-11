@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 import mainRouter from "../interfaces/http/routes/index.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import GlobalErrorHandler from "../interfaces/http/middlewares/GlobalErrorHandler.js";
 
 dotenv.config();
 
@@ -24,6 +25,8 @@ server.use(cookieParser(COOKIE_SECRET));
 
 // Registering Main Router
 server.use(BASE_API_PATH, mainRouter);
+// Global Error Handler Middleware
+server.use(GlobalErrorHandler);
 
 server.listen(Number(PORT), HOST, () => {
     console.log(
