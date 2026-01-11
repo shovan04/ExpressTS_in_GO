@@ -11,3 +11,5 @@ track.txt
 **_test.go
 
 init_test.go
+
+dist/
