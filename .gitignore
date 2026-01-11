@@ -8,6 +8,4 @@ track.txt
 *.log
 .env
 
-*_test.*test -v ./cmd/expressts/achitecture/mvc_test.go
-*_test.go!cmd/expressts/achitecture/mvc/init_test.go
-!track.txt
+**_test.go
