@@ -3,17 +3,19 @@ package layered
 func GetValidateDTOClassesContent() []byte {
 	return []byte(`import { plainToInstance } from "class-transformer";
 import { validate } from "class-validator";
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, raw, Request, Response } from "express";
+import ConflictException from "../exceptions/conflictExceptions.js";
 
 type ReqSource = "body" | "query" | "params";
 
-export const validateDto = (
-  DTOClass: any,
-  source: ReqSource = "body"
-) => {
+export const validateDto = (DTOClass: any, source: ReqSource = "body") => {
   return async (req: Request, _res: Response, next: NextFunction) => {
     try {
       const rawData = req[source];
+
+      if (rawData === undefined) {
+        throw new ConflictException("DTO validation middleware applied but " + source + " is undefined");
+      }
 
       const dtoObj = plainToInstance(DTOClass, rawData, {
         enableImplicitConversion: true,
@@ -21,8 +23,8 @@ export const validateDto = (
       });
 
       const errors = await validate(dtoObj, {
-        whitelist: true,              
-        forbidNonWhitelisted: true,   
+        whitelist: true,
+        forbidNonWhitelisted: true,
         forbidUnknownValues: true,
         validationError: {
           target: false,
