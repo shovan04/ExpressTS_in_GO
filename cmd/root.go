@@ -2,11 +2,13 @@ package root
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/charmbracelet/huh"
 	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts"
 	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/config"
+	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/types"
 )
 
 var (
@@ -49,7 +51,14 @@ func CmdInit() {
 	fmt.Println()
 
 	if confirm {
-		expressts.Init()
+		expressts.Init(types.ProjectInitStruct{
+			ProjectName:        projectName,
+			ProjectDescription: projectDesc,
+			Options: types.ProjectInitOptions{
+				ConfigType:  projectConfig,
+				ProjectArch: &projectArch,
+			},
+		})
 	} else {
 		fmt.Println("❌ Project creation cancelled.")
 	}
@@ -57,7 +66,7 @@ func CmdInit() {
 	fmt.Println()
 	fmt.Println("✅ Project created successfully!")
 	fmt.Print("\n\n")
-	fmt.Printf("👉 To get started:\n\tcd %s\n\tpnpm up\n\tpnpm dev", project.ProjectName)
+	fmt.Printf("👉 To get started:\n\tcd %s\n\tpnpm up\n\tpnpm dev", projectName)
 	fmt.Print("\n\n")
 	fmt.Println("Happy hacking 🚀 Go fast 🏎️")
 	fmt.Println()

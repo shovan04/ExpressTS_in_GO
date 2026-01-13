@@ -29,7 +29,7 @@ func ProjectSetupForm(projectName *string, projectDesc *string, projectArch *str
 				Options(
 					huh.NewOption("Layered Service Architecture (recommended)", "layered"),
 					huh.NewOption("DDD (Domain-Driven Design)", "ddd"),
-					huh.NewOption("Minimal (MVC-style)", "minimal"),
+					huh.NewOption("Minimal (MVC-style)", "mvc"),
 					huh.NewOption("Clean Architecture (under development)", "clean"),
 				).
 				Value(projectArch),
