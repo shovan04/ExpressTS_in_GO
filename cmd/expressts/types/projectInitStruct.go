@@ -1,12 +1,12 @@
 package types
 
-
 type ProjectInitOptions struct {
-	ConfigType string
+	ConfigType  string
+	ProjectArch *string
 }
 
 type ProjectInitStruct struct {
-	ProjectName string
+	ProjectName        string
 	ProjectDescription string
-	Options     ProjectInitOptions
+	Options            ProjectInitOptions
 }
