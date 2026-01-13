@@ -2,102 +2,30 @@ package expressts
 
 import (
 	"fmt"
-	"os"
-	"strings"
-
-	"github.com/charmbracelet/huh"
 	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/achitecture/ddd"
 	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/achitecture/layered"
 	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/achitecture/mvc"
-	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/config"
+
 	"github.com/shovan04/ExpressTS-in-GO/cmd/expressts/types"
 )
 
-var (
-	projectName   string
-	projectDesc   string
-	projectArch   string
-	projectConfig string
-	confirm       bool = true
-)
+func Init(project types.ProjectInitStruct) {
 
-func Init() {
-	fmt.Println("✨ Welcome to ExpressTs — Fast. Typed. Opinionated.")
-	fmt.Println("Let's set up your backend...")
+	fmt.Println("🚀 Creating project…")
 	fmt.Println()
-
-	projectSetup := config.ProjectSetupForm(&projectName, &projectDesc, &projectArch, &projectConfig)
-
-	if err := projectSetup.Run(); err != nil {
-		fmt.Println("Error during setup:", err)
-		os.Exit(1)
+	// Implement project scaffolding based on user choices
+	switch project.Options.ProjectArch {
+	case "layered":
+		//initialize layered architecture
+		layered.InitLayeredArchitecture(project)
+	case "ddd":
+		//initialize ddd architecture
+		ddd.InitDDDArchitecture(project)
+	case "mvc":
+		//initialize mvc architecture
+		mvc.InitMVCArchitecture(project)
+	default:
+		fmt.Println("Unsupported architecture.")
 	}
-
-	// Check the project name
-	// Check if the directory already exists or if the name is '.'
-	if prjName := strings.ToLower(strings.TrimSpace(projectName)); prjName == "" || prjName == "." {
-		projectName = config.GetCurrentWorkingDirectoryName()
-	}
-	if projectDesc == "" {
-		projectDesc = "An Express Typescript project"
-	}
-
-	config.ProjectSummary(projectName, projectDesc, projectArch, projectConfig)
-	fmt.Println()
-	// Confirm to proceed
-	huh.NewConfirm().
-		Title("Proceed with project creation?").
-		Value(&confirm).
-		Run()
-
-	fmt.Println()
-
-	if confirm {
-		fmt.Println("🚀 Creating project…")
-		fmt.Println()
-		// TODO: Implement project scaffolding based on user choices
-		switch projectArch {
-		case "layered":
-			//initialize layered architecture
-			layered.InitLayeredArchitecture(
-				types.ProjectInitStruct{
-					ProjectName:        projectName,
-					ProjectDescription: projectDesc,
-					Options: types.ProjectInitOptions{
-						ConfigType: projectConfig,
-					},
-				})
-		case "ddd":
-			//initialize ddd architecture
-			ddd.InitDDDArchitecture(
-				types.ProjectInitStruct{
-					ProjectName:        projectName,
-					ProjectDescription: projectDesc,
-					Options: types.ProjectInitOptions{
-						ConfigType: projectConfig,
-					},
-				})
-		case "mvc":
-			//initialize mvc architecture
-			mvc.InitMVCArchitecture(
-				types.ProjectInitStruct{
-					ProjectName:        projectName,
-					ProjectDescription: projectDesc,
-					Options: types.ProjectInitOptions{
-						ConfigType: projectConfig,
-					},
-				})
-		default:
-			fmt.Println("Unsupported architecture.")
-		}
-		fmt.Println()
-		fmt.Println("✅ Project created successfully!")
-		fmt.Print("\n\n")
-		fmt.Printf("👉 To get started:\n\tcd %s\n\tpnpm up\n\tpnpm dev", projectName)
-		fmt.Print("\n\n")
-		fmt.Println("Happy hacking 🚀 Go fast 🏎️")
-	} else {
-		fmt.Println("❌ Project creation cancelled.")
-	}
-	fmt.Println()
+	
 }
