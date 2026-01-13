@@ -48,8 +48,6 @@ func CmdInit() {
 		Value(&confirm).
 		Run()
 
-	fmt.Println()
-
 	if confirm {
 		expressts.Init(types.ProjectInitStruct{
 			ProjectName:        projectName,
@@ -59,9 +57,9 @@ func CmdInit() {
 				ProjectArch: &projectArch,
 			},
 		})
+		config.ProjectCreated(projectName)
 	} else {
 		fmt.Println("❌ Project creation cancelled.")
 	}
 
-	config.ProjectCreated(projectName)
 }

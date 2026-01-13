@@ -11,11 +11,7 @@ import (
 )
 
 func Init(project types.ProjectInitStruct) {
-
-	fmt.Println("project arch on init project file", *project.Options.ProjectArch)
-
 	fmt.Println("🚀 Creating project…")
-	fmt.Println()
 	// Implement project scaffolding based on user choices
 	switch *project.Options.ProjectArch {
 	case "layered":
