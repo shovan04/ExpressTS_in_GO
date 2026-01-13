@@ -63,11 +63,5 @@ func CmdInit() {
 		fmt.Println("❌ Project creation cancelled.")
 	}
 
-	fmt.Println()
-	fmt.Println("✅ Project created successfully!")
-	fmt.Print("\n\n")
-	fmt.Printf("👉 To get started:\n\tcd %s\n\tpnpm up\n\tpnpm dev", projectName)
-	fmt.Print("\n\n")
-	fmt.Println("Happy hacking 🚀 Go fast 🏎️")
-	fmt.Println()
+	config.ProjectCreated(projectName)
 }
